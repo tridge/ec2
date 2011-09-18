@@ -27,6 +27,10 @@
 #include "ec2drv.h"
 using namespace std;
 
+#ifdef _SYS_SIGNAL_H_ 
+/* This appears to be a BSD variant which also uses a different type name */ 
+typedef sig_t sighandler_t; 
+#endif
 
 static EC2DRV obj;
 static sighandler_t old_sigint_handler;

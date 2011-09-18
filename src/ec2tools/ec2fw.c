@@ -10,6 +10,10 @@
 #include <getopt.h>
 #include "ec2drv.h"
 
+#ifdef _SYS_SIGNAL_H_ 
+/* This appears to be a BSD variant which also uses a different type name */ 
+typedef sig_t sighandler_t; 
+#endif
 
 // foward declarations
 void print_buf( char *buf, int len );

@@ -42,6 +42,10 @@
 #include "targets51.h"
 #include "newcdb.h"
 
+#ifdef _SYS_SIGNAL_H_ 
+/* This appears to be a BSD variant which also uses a different type name */ 
+typedef sig_t sighandler_t; 
+#endif
 
 #ifdef HAVE_LIBREADLINE
 	#if defined(HAVE_READLINE_READLINE_H)
