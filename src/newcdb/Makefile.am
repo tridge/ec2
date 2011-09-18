@@ -11,6 +11,6 @@ newcdb_LDFLAGS = $(all_libraries)
 noinst_HEADERS = parsecmd.h cmdshow.h cmdcommon.h cmdbreakpoints.h \
 	cmddisassemble.h cmdmaintenance.h newcdb.h
 newcdb_LDADD = $(top_builddir)/src/ec2drv/libec2drv.la \
-	$(top_builddir)/src/debug-core/libec2debugcore.la -lboost_regex -lpthread
+	$(top_builddir)/src/debug-core/libec2debugcore.la -lboost_regex-mt -lpthread
 
 ##AUTOMAKE_OPTIONS = dejagnu
