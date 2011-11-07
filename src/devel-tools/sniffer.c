@@ -14,7 +14,7 @@
 #include <termios.h>
 #include <unistd.h>
 
-#define USAGE	"Usage : Master Slave speed format\nwith speedin Kbps and format like [5-8][NOE][1-2]\0n"
+#define USAGE	"Usage : Master Slave speed format\nwith speedin Kbps and format like [5-8][NOE][1-2]\n"
 
 struct termios tty;
 

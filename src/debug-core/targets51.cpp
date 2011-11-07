@@ -87,7 +87,7 @@ bool TargetS51::connect()
 					signal(SIGINT , SIG_IGN );
 					signal(SIGABRT, SIG_IGN );
 					signal(SIGCHLD, SIG_IGN );
-					char *argv[] = {"s51","-Z9756","-tC52",0};
+					char *argv[] = {(char *)"s51", (char *)"-Z9756", (char *)"-tC52",0};
 					if( execvp("s51",argv) < 0 )
 					{
 						perror("cannot exec simulator");
