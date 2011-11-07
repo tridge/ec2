@@ -247,8 +247,8 @@ BOOL c2_write_flash( EC2DRV *obj, uint8_t *buf, uint32_t start_addr, int len, BO
 	// I this would complicate things, well just do 8 byte writes and then an
 	// fragment at the end.  This will need testing throughlerly as it is
 	// different to the IDE's action.
-	unsigned int i, addr;
-	char		 cmd[0x0c];
+	unsigned int i, j, addr;
+	unsigned char	 cmd[0x0c];
 	BOOL ok;
 
 	flash_write_pre(obj);
@@ -270,8 +270,15 @@ BOOL c2_write_flash( EC2DRV *obj, uint8_t *buf, uint32_t start_addr, int len, BO
 		cmd[2] = (addr>>8) & 0xff;					// high byte
 		cmd[3] = (len-i)<8 ? (len-i) : 8;
 		memcpy( &cmd[4], &buf[i], cmd[3] );
+
+		for (j = 0; j < cmd[3]; j++)					// skip all-0xff blocks
+			if (cmd[4 + j] != 0xff)
+				break;
+		if (j == cmd[3])
+			continue;
+
 		if( !trx( obj, cmd, cmd[3]+4, "\x0d", 1 ) )
-			return FALSE;							// Failure
+			return FALSE;						// Failure
 	}
 
 	// estore origional condition
