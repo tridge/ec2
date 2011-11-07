@@ -1,19 +1,21 @@
 ec2drv Specific Information
 ===========================
 
+[mjs: updated for git and Mac OS X building]
+
 If you got the source from CVS:
 -------------------------------
 
-make -f Makefile.cvs
+autoreconf -i
 ./configure
+autoreconf -i
 make
 make install
 
-The make -f Makefile.cvs is required to rebuild several files needed for normal
-build operations.  This step is not necessary for the source tarballs.
-
 The make install step is not necessary for development as all
-executabless can be run from with the source tree where that were created.
+executabless can be run from with the source tree where that were
+created.
+
 
 Source from a source tarball:
 -----------------------------
@@ -23,17 +25,22 @@ make
 make install
 
 
-
 General building notes:
 -----------------------
-Known dependancies:
+
+Known dependencies (Linux):
 	GNU readline-dev	libreadline5-dev
-	BOOTS C++ Library	libboost-regx-dev
+	BOOST C++ Library	libboost-regx-dev
 	python2.4
 	libusb
 
+On Mac OS X, only BOOST and libusb are required; install them with
+Homebrew or MacPorts.  In the latter case, it is necessary to add
 
+   CFLAGS=-I/opt/local/include LDFLAGS=-L/opt/local/lib
 
+options to configure in order for it to locate the required headers
+and libraries.
 
 
 Standard GNU INSTALL information below
